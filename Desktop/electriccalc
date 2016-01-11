@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+ public class electric1 
+ {
+public static void main(String[] args) 
+  {
+  int unitcost;
+  int cpuspeed;
+  int size;
+      int comptype;
+ 
+ 
+ 
+  Scanner in = new Scanner(System.in);
+ 
+  System.out.println("Purchase price of computer: ");
+  unitcost = in.nextInt();
+ 
+  System.out.println("type 1 for laptop, 2 for desktop: ");
+  comptype = in.nextInt();
+
+  int battery = 0;
+  
+  if (comptype == 1) {
+  battery = 1;
+  } else if (comptype == 2) {
+  battery = 2;
+  }
+ 
+int total1 = unitcost;
+ 
+  System.out.println("Screen size (in inches): ");
+  size = in.nextInt();
+   
+  double c;
+    c = 0;
+   
+    if (size < 11) {
+    c = 89.208;
+  } else if (11<=size && size<15) {
+    c = 113.92;
+  } else if (size >= 15) {
+    c = 137.4849;
+      }
+  // above values are screen areas (in^2) taken from macbook air 11in, macbook air 13in,
+  // and macbook pro 15 in, respectively (apple.com)
+   
+  int hours;
+ 
+  System.out.println("How many hours per day will you use the computer: ");
+  hours = in.nextInt();
+ 
+  System.out.println("speed of processor (MHz): ");
+  cpuspeed = in.nextInt();
+ 
+  int years;
+  System.out.println("How many years do you plan on keeping the computer: ");
+  years = in.nextInt();
+ 
+  int country;
+  System.out.println("type your country code- 1 for US, 2-UK, 3-EU, 4-CN: ");
+  country = in.nextInt();
+ 
+  double kwh = 0;
+ 
+  if (country == 1) {
+  kwh = 0.12; //Source- NPR 
+    } else if (country == 2) {
+      kwh = 0.25; //Source- comparemysolar.co.uk ; currency converter
+    } else if (country == 4) {
+      kwh = 0.091; //Source - wikipedia.com; average of high and low end numbers
+    } else if (country == 3) {
+      kwh = 0.2657; //EIA.gov 
+    }
+ 
+  int batterycost = 0;
+  
+
+  if (battery == 1) {
+  if (hours >= 9){
+  if(years >= 3){
+  batterycost = (years/3) * 130;
+  }
+  }
+
+ 
+  else if (battery == 2) {
+  batterycost = 0; //desktop requires no battery 
+  }
+
+ 
+ 
+
+  System.out.println("Cost of electricity = $"+ ((kwh*(hours*365*(years))*((0.285*c)))/1000));
+  System.out.println("Cost of computer = $"+ total1);
+  System.out.println("Battery cost: $" + batterycost);}
+  System.out.println("Total cost = $"+ (((kwh*(hours*365*(years))*((0.285*c)))/1000)+total1+batterycost));}}
